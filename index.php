@@ -514,8 +514,8 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="login.html" class="btn btn-login">Log in</a>
-                    <a href="signup.html" class="btn btn-signup">Sign up</a>
+                    <a href="login.php" class="btn btn-login">Log in</a>
+                    <a href="signup.php" class="btn btn-signup">Sign up</a>
                 </div>
             </div>
         </div>
@@ -529,7 +529,7 @@
                     <h1 class="hero-title">Master the Art of Debate</h1>
                     <p class="hero-subtitle">Enhance your critical thinking, persuasive speaking, and argumentation skills through our comprehensive platform designed for debaters of all levels.</p>
                     <div>
-                        <a href="signup.html" class="btn hero-cta">Get Started For Free</a>
+                        <a href="signup.php" class="btn hero-cta">Get Started For Free</a>
                         <a href="#features" class="btn hero-secondary">Learn More</a>
                     </div>
                 </div>
@@ -708,7 +708,7 @@
         <div class="container text-center">
             <h2 class="cta-title">Ready to Become a Better Debater?</h2>
             <p class="cta-description">Join thousands of students and coaches who are improving their debate skills every day.</p>
-            <a href="signup.html" class="btn cta-button">Sign Up Now</a>
+            <a href="signup.php" class="btn cta-button">Sign Up Now</a>
         </div>
     </section>
 
@@ -892,7 +892,7 @@ $pageTitle = "Welcome to E-Learning Portal";
                     <p class="lead">Discover top-quality courses taught by industry experts. Start your learning journey today!</p>
                     <div class="mt-4">
                         <a href="courses.php" class="btn btn-primary btn-lg">Browse Courses</a>
-                        <a href="register.php" class="btn btn-outline-secondary btn-lg ms-2">Sign Up</a>
+                        <a href="signup.php" class="btn btn-outline-secondary btn-lg ms-2">Sign Up</a>
                     </div>
                 </div>
                 <div class="col-lg-6">

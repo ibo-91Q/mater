@@ -347,16 +347,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="courses.html">Courses</a>
+                        <a class="nav-link active" href="courses.php">Courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="practice.html">Practice</a>
+                        <a class="nav-link" href="practice.php">Practice</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="community.html">Community</a>
+                        <a class="nav-link" href="community.php">Community</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
@@ -438,13 +438,13 @@
 
                     <?php
 // Start session for user authentication if needed
-session_start();
+//session_start();
 
 // Database connection details
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', 'education_portal');
+define('DB_NAME', 'debateskills');
 
 // Attempt to connect to MySQL database
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -465,7 +465,7 @@ $per_page = 12; // Number of courses per page
 
 // Get all available categories for filter
 function getCategories($conn) {
-    $sql = "SELECT DISTINCT category FROM courses ORDER BY category";
+    $sql = "SELECT DISTINCT category_id FROM courses ORDER BY category_id";
     $result = mysqli_query($conn, $sql);
     
     $categories = array();
@@ -476,46 +476,6 @@ function getCategories($conn) {
     }
     
     return $categories;
-}
-
-// Count total courses with filters
-function countFilteredCourses($conn, $search, $category, $price_min, $price_max) {
-    $sql = "SELECT COUNT(*) as total FROM courses WHERE 1=1";
-    $params = array();
-    $types = "";
-    
-    if(!empty($search)){
-        $sql .= " AND (title LIKE ? OR description LIKE ?)";
-        $searchParam = "%{$search}%";
-        $params[] = $searchParam;
-        $params[] = $searchParam;
-        $types .= "ss";
-    }
-    
-    if(!empty($category)){
-        $sql .= " AND category = ?";
-        $params[] = $category;
-        $types .= "s";
-    }
-    
-    $sql .= " AND price >= ? AND price <= ?";
-    $params[] = $price_min;
-    $params[] = $price_max;
-    $types .= "dd";
-    
-    if($stmt = mysqli_prepare($conn, $sql)){
-        if(!empty($params)){
-            mysqli_stmt_bind_param($stmt, $types, ...$params);
-        }
-        
-        if(mysqli_stmt_execute($stmt)){
-            $result = mysqli_stmt_get_result($stmt);
-            $row = mysqli_fetch_assoc($result);
-            return $row['total'];
-        }
-    }
-    
-    return 0;
 }
 
 // Get filtered courses with pagination
@@ -541,12 +501,16 @@ function getFilteredCourses($conn, $search, $category, $price_min, $price_max, $
         $types .= "s";
     }
     
+    // Comment out price filtering here too
+    /*
     $sql .= " AND price >= ? AND price <= ?";
     $params[] = $price_min;
     $params[] = $price_max;
     $types .= "dd";
+    */
     
     // Add sorting
+    /*
     switch($sort) {
         case 'price_low':
             $sql .= " ORDER BY price ASC";
@@ -564,6 +528,8 @@ function getFilteredCourses($conn, $search, $category, $price_min, $price_max, $
         default:
             $sql .= " ORDER BY created_at DESC";
     }
+    */
+    // Remove this extra closing brace that was causing the error
     
     $sql .= " LIMIT ? OFFSET ?";
     $params[] = $per_page;
